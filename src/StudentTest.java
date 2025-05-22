@@ -1,5 +1,4 @@
 import org.junit.Test;
-
 import static org.junit.Assert.*;
 /**
  * Tests the usage of the Student class for proper implementation
