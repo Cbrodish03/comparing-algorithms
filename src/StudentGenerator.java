@@ -77,4 +77,8 @@ public class StudentGenerator {
     public Student getStudent(int index) {
         return students[index];
     }
+
+    public Student[] getStudents() {
+        return students;
+    }
 }
