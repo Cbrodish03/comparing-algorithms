@@ -7,6 +7,7 @@ public class Sort {
     private Student[] students;
     private int comparisons;
     private int swaps;
+    private String type;
 
     // Constructor(s)
     public Sort(Student[] students) {
@@ -17,6 +18,7 @@ public class Sort {
 
     // Methods
     public void insertionSort() {
+        type = "insertion";
         for (int i = 1; i < students.length; i++) {
             for (int j = i; j > 0; j--) {
                 comparisons++;
@@ -32,6 +34,7 @@ public class Sort {
     }
 
     public void bubbleSort() {
+        type = "bubble";
         for (int i = 0; i < students.length - 1; i++) {
             for (int j = 1; j < students.length - i; j++) {
                 comparisons++;
@@ -47,10 +50,12 @@ public class Sort {
     }
 
     public void selectionSort() {
+        type = "selection";
         for (int i = 0; i < students.length - 1; i++) {
             int biggestIndex = 0;
             int j;
             for (j = 1; j < students.length - i; j++) {
+                comparisons++;
                 if (students[j].getId() > students[biggestIndex].getId()) {
                     biggestIndex = j;
                 }
@@ -84,6 +89,15 @@ public class Sort {
             }
         }
         return true;
+    }
+
+    public String printStatistics() {
+        return "Algorithm type: " +
+                type +
+                "; comparisons=" +
+                this.comparisons +
+                ", swaps=" +
+                this.swaps;
     }
 
 
