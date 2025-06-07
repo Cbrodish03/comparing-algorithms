@@ -20,16 +20,20 @@ public class Sort {
     public void insertionSort() {
         type = "insertion";
         for (int i = 1; i < students.length; i++) {
-            for (int j = i; j > 0; j--) {
+            Student key = students[i];
+            int j = i - 1;
+            while (j >= 0) {
                 comparisons++;
-                if (students[j - 1].compareStudent(students[j]) == 1) {
-                    // swap
-                    Student temp = students[j];
-                    students[j] = students[j - 1];
-                    students[j - 1] = temp;
+                if (students[j].compareStudent(key) > 0) {
                     swaps++;
+                    students[j + 1] = students[j];
+                    j--;
+                }
+                else {
+                    break;
                 }
             }
+            students[j + 1] = key;
         }
     }
 
