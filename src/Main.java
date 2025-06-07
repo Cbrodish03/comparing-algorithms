@@ -21,33 +21,44 @@ public class Main {
             generator = new StudentGenerator(size);
             sort = new Sort(generator.getStudents());
 
-            System.out.println("What sorting algorithm would you like to use? [insertion/bubble/selection]");
+            System.out.println("What sorting algorithm would you like to use? [insertion/bubble/selection/merge]");
             algorithm = scanner.next();
             if (algorithm.startsWith("i") || algorithm.startsWith("I")) {
+                sort.setType("insertion");
                 System.out.println("Performing insertion sort on an array of " + size + " students!" );
                 long startTime = System.nanoTime();
                 sort.insertionSort();
                 long endTime = System.nanoTime();
                 System.out.println(sort.printStatistics());
-                System.out.println("Sort time: " + ((endTime - startTime) / 1000000) + "ms");
+                System.out.println("Sort time: " + ((endTime - startTime) / 1000000.0) + "ms");
             }
             else if (algorithm.startsWith("b") || algorithm.startsWith("B")) {
+                sort.setType("bubble");
                 System.out.println("Performing bubble sort on an array of " + size + " students!" );
                 long startTime = System.nanoTime();
                 sort.bubbleSort();
                 long endTime = System.nanoTime();
                 System.out.println(sort.printStatistics());
-                System.out.println("Sort time: " + ((endTime - startTime) / 1000000) + "ms");
+                System.out.println("Sort time: " + ((endTime - startTime) / 1000000.0) + "ms");
             }
             else if (algorithm.startsWith("s") || algorithm.startsWith("S")) {
+                sort.setType("selection");
                 System.out.println("Performing selection sort on an array of " + size + " students!" );
                 long startTime = System.nanoTime();
                 sort.selectionSort();
                 long endTime = System.nanoTime();
                 System.out.println(sort.printStatistics());
-                System.out.println("Sort time: " + ((endTime - startTime) / 1000000) + "ms");
+                System.out.println("Sort time: " + ((endTime - startTime) / 1000000.0) + "ms");
             }
-
+            else if (algorithm.startsWith("m") || algorithm.startsWith("M")) {
+                sort.setType("merge");
+                System.out.println("Performing merge sort on an array of " + size + " students!" );
+                long startTime = System.nanoTime();
+                sort.mergeSort(generator.getStudents(), 0, generator.getStudents().length - 1);
+                long endTime = System.nanoTime();
+                System.out.println(sort.printStatistics());
+                System.out.println("Sort time: " + ((endTime - startTime) / 1000000.0) + "ms");
+            }
 
             System.out.println("Would you like to run another sort? [Y/N]");
             input = scanner.next();

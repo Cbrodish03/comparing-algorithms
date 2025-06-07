@@ -61,4 +61,20 @@ public class SortTest
         assertTrue(selectionSort.isSorted());
     }
 
+    @Test
+    public void testMergeSort() {
+        Random random = new Random();
+        random.setSeed(123456789);
+        generator1 = new StudentGenerator(10, random);
+        Student[] students = generator1.getStudents();
+        Sort mergeSort = new Sort(students);
+        String beforeSort = mergeSort.printSort();
+        mergeSort.mergeSort(students, 0, students.length - 1);
+        String afterSort = mergeSort.printSort();
+        assertNotEquals(beforeSort, afterSort);
+        assertEquals("Student ID list: {[18484866][23732807][25070891][30665920][40816705][40854664]" +
+                "[51075538][82919789][91296483][94261274]}", afterSort);
+        assertTrue(mergeSort.isSorted());
+    }
+
 }

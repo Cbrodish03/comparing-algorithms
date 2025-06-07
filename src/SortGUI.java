@@ -23,7 +23,7 @@ public class SortGUI extends JFrame{
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new FlowLayout());
 
-        buttonPanel.add(new JLabel("Number of Students:"));
+        buttonPanel.add(new JLabel("Number of Students [ex. 1000]:"));
         sizeField = new JTextField(5);
         sizeField.setText("10");    // default value
         buttonPanel.add(sizeField);
@@ -42,6 +42,11 @@ public class SortGUI extends JFrame{
         JButton bubbleButton = new JButton("Bubble Sort");
         bubbleButton.addActionListener((ActionEvent e) -> runSort("bubble"));
         buttonPanel.add(bubbleButton);
+
+        // merge sort button
+        JButton mergeButton = new JButton("Merge Sort");
+        mergeButton.addActionListener((ActionEvent e) -> runSort("merge"));
+        buttonPanel.add(mergeButton);
 
         frame.add(buttonPanel, BorderLayout.NORTH);
         frame.setVisible(true);
@@ -62,10 +67,12 @@ public class SortGUI extends JFrame{
         StudentGenerator generator = new StudentGenerator(size);
         Student[] students = generator.getStudents();
         Sort sorting = new Sort(students);
+        sorting.setType(algorithm);
         switch (algorithm) {
             case "insertion" -> sorting.insertionSort();
             case "selection" -> sorting.selectionSort();
             case "bubble" -> sorting.bubbleSort();
+            case "merge" -> sorting.mergeSort(students, 0, students.length - 1);
         }
 
         outputText.setText(sorting.printStatistics());
